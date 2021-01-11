@@ -9,7 +9,9 @@ class WawiboxFaxTest extends TestCase
      */
     private $_faxServiceType = WawiboxFax::SERVICE_TYPE_OLD;
 
-
+    /**
+     * Passed test without error
+     */
     function testNewFaxServiceSuccess(){
         $fax = new WawiboxFax( $this->_faxServiceType );
         $fax->setFaxData(['06221707075', 'hello world']);
@@ -18,6 +20,9 @@ class WawiboxFaxTest extends TestCase
         $this->assertSame(200, intval($response["code"]));
     }
 
+    /**
+     * Passed test with error
+     */
     function testNewFaxServiceErrorWithNumber(){
         $fax = new WawiboxFax( $this->_faxServiceType );
         $fax->setFaxData(['06221707075s', 'hello world']);
@@ -25,7 +30,9 @@ class WawiboxFaxTest extends TestCase
         print_r($response);
         $this->assertSame(344, intval($response["code"]));
     }
-
+    /**
+     * Passed test with error
+     */
     function testNewFaxServiceErrorWithMissingMessage(){
         $fax = new WawiboxFax( $this->_faxServiceType );
         $fax->setFaxData(['06221707075', '']);
@@ -33,7 +40,9 @@ class WawiboxFaxTest extends TestCase
         print_r($response);
         $this->assertSame(344, intval($response["code"]));
     }
-
+    /**
+     * Passed test with error
+     */
     function testNewFaxServiceErrorWithNumberAndMissingMessage(){
         $fax = new WawiboxFax( $this->_faxServiceType );
         $fax->setFaxData(['06221707075s', '']);
